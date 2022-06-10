@@ -1,10 +1,13 @@
-# Declaring Tensors
+# Defining Tensors
+
+## Declaring Tensors
 
 `pytaco.tensor` objects, which represent mathematical tensors, form the core of
 the TACO Python library. You can can declare a new tensor by specifying the
 sizes of each dimension, the [format](pytensors.md#defining-tensor-formats)
 that will be used to store the tensor, and the
-[datatype](reference/rst_files/dtype_object.html) of the tensor's nonzero elements:
+[datatype](reference/rst_files/dtype_object.html) of the tensor's nonzero
+elements:
 
 ```python
 # Import the TACO Python library
@@ -43,7 +46,7 @@ and initialized with an arbitrary value as demonstrated below:
 aplha = pt.tensor(42.0)
 ```
 
-# Defining Tensor Formats
+## Defining Tensor Formats
 
 Conceptually, you can think of a tensor as a tree where each level (excluding
 the root) corresponding to a dimension of the tensor.  Each path from the root
@@ -78,7 +81,7 @@ is dense or sparse as well as (optionally) the order in which dimensions should
 be stored.  TACO also predefines some common tensor formats (including 
 ```pt.csr``` and ```pt.csc```) that you can use out of the box.
 
-# Initializing Tensors
+## Initializing Tensors
 
 Tensors can be made by using python indexing syntax. For example, one may write
 the following: You can initialize a tensor by calling its `insert` method to
@@ -124,7 +127,7 @@ for coordinates, val in A:
   print(val)
 ```
 
-# File I/O
+## File I/O
 
 Rather than manually constructing a tensor, you can load tensors directly from
 file by invoking the `pytaco.read` function:
@@ -161,7 +164,7 @@ formats:
 * [Rutherford-Boeing Format (.rb)](https://www.cise.ufl.edu/research/sparse/matrices/DOC/rb.pdf)
 * [FROSTT Format (.tns)](http://frostt.io/tensors/file-formats.html)
 
-# NumPy and SciPy I/O
+## NumPy and SciPy I/O
 
 Tensors can also be initialized with either NumPy arrays or SciPy sparse (CSR 
 or CSC) matrices:

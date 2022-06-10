@@ -1,7 +1,9 @@
+# Machine Learning: SDDMM
+
 Sampled dense-dense matrix product (SDDMM) is a bottleneck operation in many
 factor analysis algorithms used in machine learning, including Alternating
-Least Squares and Latent Dirichlet Allocation [1]. Mathematically, the
-operation can be expressed as 
+Least Squares and Latent Dirichlet Allocation. Mathematically, the operation
+can be expressed as 
 
 $$A = B \circ CD,$$
 
@@ -12,7 +14,7 @@ notation](pycomputations.md#specifying-tensor-algebra-computations) as
 
 $$A_{ij} = B_{ij} \cdot C_{ik} \cdot D_{kj}.$$
 
-You can use the taco C++ library to easily and efficiently compute the SDDMM, as
+You can use the TACO C++ API to easily and efficiently compute the SDDMM, as
 shown here:
 
 ```c++
@@ -79,7 +81,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-You can also use the TACO Python library to perform the same computation, as
+You can also use the TACO Python API to perform the same computation, as
 demonstrated here:
 
 ```python
@@ -122,7 +124,3 @@ that efficiently performs the computation in one shot.  This lets TACO only
 compute elements of the intermediate dense matrix product that are actually 
 needed to compute the result, thus reducing the asymptotic complexity of the 
 computation.
-
-[1] Huasha Zhao. 2014. High Performance Machine Learning through Codesign and
-Rooflining. Ph.D. Dissertation. EECS Department, University of California,
-Berkeley. 

@@ -1,7 +1,9 @@
+# Strategies for Optimization
+
 This section describes various strategies for improving the performace of
 applications that use TACO to perform linear and tensor algebra computations.
 
-# Selecting the Right Tensor Format
+## Selecting the Right Tensor Format
 
 TACO supports storing tensors in a wide range of formats, including many
 commonly used ones like dense arrays, compressed sparse row (CSR), and
@@ -78,7 +80,7 @@ tensors in your application is to just try out many different formats and see
 what works. Fortunately, as the examples above demonstrate, this is simple to
 do with TACO.
 
-# Parallelizing Computations
+## Parallelizing Computations
 
 By default, TACO performs all computations using a single thread.  The maximum
 number of threads that TACO may use to perform computations can be adjusted by
@@ -158,7 +160,7 @@ then using a dynamic strategy will likely not more evenly distribute work
 between threads.  In that case, the default static schedule would likely yield
 better performance.
 
-# Fusing Computations
+## Fusing Computations
 
 TACO supports efficiently computing complicated tensor algebra expressions
 involving many discrete operations in a single shot.  Let's say, for instance,

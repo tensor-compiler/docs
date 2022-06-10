@@ -1,3 +1,5 @@
+# Guide to Benchmarking
+
 The performance of Python applications that use TACO can be measured using
 Python's built-in `time.perf_counter` function with minimal changes to the
 applications.  As an example, we can benchmark the performance of the

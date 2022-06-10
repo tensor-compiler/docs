@@ -1,4 +1,6 @@
-# Specifying Tensor Algebra Computations
+# Computing on Tensors
+
+## Specifying Tensor Algebra Computations
 
 Tensor algebra computations can be expressed in TACO using tensor index
 notation, which at a high level describes how each element in the result tensor
@@ -17,7 +19,7 @@ multiplication of three tensors can be expressed in index notation as
 
 $$A_{ijk} = B_{ijk} \cdot C_{ijk} \cdot D_{ijk}.$$
 
-To define the same computation using the TACO Python library, we can write very
+To define the same computation using the TACO Python API, we can write very
 similar code, with the main difference being that we also have to explicitly
 declare the index variables beforehand:
 
@@ -63,7 +65,7 @@ A[i,j,k] = B[i,j,k] * C[i,j,k] * D[i,j,k]
     TACO currently does not support using the same index variable to index into 
     multiple dimensions of the same tensor operand (e.g., `A[i,i]`).
 
-## Expressing Reductions
+### Expressing Reductions
 
 In all of the previous examples, all the index variables are used to index into
 both the result and the operands of a computation.  It is also possible for
@@ -105,7 +107,7 @@ is equivalent to
 
 $$y_i = \sum_{j} \big(A_{ij} \cdot x_j + z_j\big).$$
 
-# Expressing Broadcasts
+### Expressing Broadcasts
 
 TACO supports computations that broadcasts tensors along any number of
 dimensions.  The following example, for instance, broadcasts the vector `c` 
@@ -127,7 +129,7 @@ i, j = pt.get_index_vars(2)
 A[i, j] =  B[i, j] + C[i, j]  # ERROR!!
 ```
 
-# Expressing Transposes
+### Expressing Transposes
 
 Computations that transpose tensors can be expressed by rearranging the order 
 in which index variables are used to access tensor operands.  The following
@@ -204,7 +206,7 @@ Cp = C.transpose([0, 1], pt.format([dense, compressed]))  # Store a copy of C in
 A[i,j] = B[i,j] + Cp[i,j]
 ```
 
-# Performing the Computation
+## Performing the Computation
 
 Once a tensor algebra computation has been defined, you can simply invoke the
 result tensor's `evaluate` method to perform the actual computation:

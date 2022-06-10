@@ -1,3 +1,5 @@
+# Data Analytics: MTTKRP
+
 Matricized tensor times Khatri-Rao product (MTTKRP) is a bottleneck operation
 in various algorithms - such as Alternating Least Squares - for computing
 sparse tensor factorizations like the Canonical Polyadic Decomposition.
@@ -13,8 +15,8 @@ notation](pycomputations.md#specifying-tensor-algebra-computations) as
 
 $$A_{ij} = B_{ikl} \cdot D_{lj} \cdot C_{kj}.$$
 
-You can use the TACO C++ library to easily and efficiently compute the MTTKRP,
-as shown here:
+You can use the TACO C++ API to easily and efficiently compute the MTTKRP, as
+shown here:
 ```c++
 // On Linux and MacOS, you can compile and run this program like so:
 //   g++ -std=c++11 -O3 -DNDEBUG -DTACO -I ../../include -L../../build/lib mttkrp.cpp -o mttkrp -ltaco
@@ -57,7 +59,7 @@ int main(int argc, char* argv[]) {
   }
   D.pack();
 
-    // Declare the output matrix to be a dense matrix with 25 columns and the same
+  // Declare the output matrix to be a dense matrix with 25 columns and the same
   // number of rows as the number of slices along the first dimension of input
   // tensor B, to be also stored as a row-major dense matrix.
   Tensor<double> A({B.getDimension(0), 25}, rm);
@@ -80,7 +82,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-You can also use the TACO Python library to perform the same computation, as
+You can also use the TACO Python API to perform the same computation, as
 demonstrated here:
 
 ```python

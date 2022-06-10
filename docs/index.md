@@ -7,14 +7,14 @@ hood, TACO automatically generates efficient code to perform these
 computations.
 
 The sidebar to the left links to documentation for the TACO C++ and Python
-libraries as well as some examples demonstrating how TACO can be used in
+APIs as well as some examples demonstrating how TACO can be used in
 real-world applications.
 
 # System Requirements
 
 * A C compiler that supports C99, such as GCC or Clang
     * Support for OpenMP is also required if parallel execution is desired
-* Python 3 with NumPy and SciPy (for the Python library)
+* Python 3 with NumPy and SciPy (for the Python API)
 
 # Getting Help
 

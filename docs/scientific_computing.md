@@ -1,3 +1,5 @@
+# Scientific Computing: SpMV
+
 Sparse matrix-vector multiplication (SpMV) is a bottleneck computation in many
 scientific and engineering computations. Mathematically, SpMV can be expressed
 as 
@@ -10,8 +12,8 @@ notation](pycomputations.md#specifying-tensor-algebra-computations) as
 
 $$y_i = A_{ij} \cdot x_j + z_i.$$
 
-You can use the TACO C++ library to easily and efficiently compute SpMV, as
-shown here:
+You can use the TACO C++ API to easily and efficiently compute SpMV, as shown
+here:
 
 ```c++
 // On Linux and MacOS, you can compile and run this program like so:
@@ -76,7 +78,7 @@ int main(int argc, char* argv[]) {
 }
 ```
 
-You can also use the TACO Python library to perform the same computation, as
+You can also use the TACO Python API to perform the same computation, as
 demonstrated here:
 
 ```python
