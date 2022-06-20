@@ -29,3 +29,4 @@ nav:
     - Advanced Usage:
         - 'Strategies for Optimization': 'optimization.md'
         - 'Guide to Benchmarking': 'benchmarking.md'
+        - 'Controlling Memory': 'controlling_memory.md'
