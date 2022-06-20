@@ -1,4 +1,4 @@
-site_name: 'Documentation | TACO: The Tensor Algebra Compiler'
+site_name: 'TACO Documentation'
 site_favicon: favicon.ico
 theme: readthedocs
 extra_css: [extra.css]
@@ -8,6 +8,8 @@ markdown_extensions:
     - mdx_math
     - markdown.extensions.admonition
     - markdown.extensions.fenced_code
+    - pymdownx.highlight:
+        use_pygments: false
     - pymdownx.superfences
 use_directory_urls: false
 nav:
