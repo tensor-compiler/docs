@@ -71,7 +71,7 @@ from pytaco import dense, compressed
 dm   = pt.format([dense, dense])                        # (Row-major) dense matrix format
 csr  = pt.format([dense, compressed])                   # Compressed sparse row matrix format
 csc  = pt.format([dense, compressed], [1, 0])           # Compressed sparse column matrix format
-dcsr = pt.format([compressed, compressed], [1, 0])      # Doubly compressed sparse column matrix format
+dcsc = pt.format([compressed, compressed], [1, 0])      # Doubly compressed sparse column matrix format
 csf  = pt.format([compressed, compressed, compressed])  # Compressed sparse fiber tensor format
 ```
 
