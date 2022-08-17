@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="favicon.ico" />
+    <title>Computing on Tensors - TACO Documentation</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="extra.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Computing on Tensors";
+        var mkdocs_page_input_path = "computations.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> TACO Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">C++ API</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="tensors.html">Defining Tensors</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="computations.html">Computing on Tensors</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#specifying-tensor-algebra-computations">Specifying Tensor Algebra Computations</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#expressing-reductions">Expressing Reductions</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#performing-the-computation">Performing the Computation</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#lazy-execution">Lazy Execution</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="scheduling.html">Providing a Schedule</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Python API</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="pytensors.html">Defining Tensors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="pycomputations.html">Computing on Tensors</a>
+                  </li>
+                  <li class="toctree-l1"><a class="" href="http://tensor-compiler.org/reference/">Reference Manual</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="tutorial.html">Tutorial</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Example Applications</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="scientific_computing.html">Scientific Computing: SpMV</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="data_analytics.html">Data Analytics: MTTKRP</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="machine_learning.html">Machine Learning: SDDMM</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Advanced Usage</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="optimization.html">Strategies for Optimization</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="benchmarking.html">Guide to Benchmarking</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="controlling_memory.html">Controlling Memory</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">TACO Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" alt="Docs"></a> &raquo;</li>
+          <li>C++ API &raquo;</li>
+      <li>Computing on Tensors</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="computing-on-tensors">Computing on Tensors</h1>
+<h2 id="specifying-tensor-algebra-computations">Specifying Tensor Algebra Computations</h2>
+<p>Tensor algebra computations can be expressed in TACO with tensor index
+notation, which at a high level describes how each element in the output tensor
+can be computed from elements in the input tensors. As an example, matrix
+addition can be expressed in index notation as </p>
+<pre class="highlight"><code class="language-c++">A(i,j) = B(i,j) + C(i,j)</code></pre>
+<p>where <code>A</code>, <code>B</code>, and <code>C</code> denote order-2 tensors (i.e. matrices) while <code>i</code> and
+<code>j</code> are index variables that represent abstract indices into the corresponding
+dimensions of the tensors. In words, the example above essentially states that,
+for every <code>i</code> and <code>j</code>, the element in the <code>i</code>-th row and <code>j</code>-th column of the
+<code>A</code> should be assigned the sum of the corresponding elements in <code>B</code> and <code>C</code>.
+Similarly, element-wise multiplication of three order-3 tensors can be
+expressed in index notation as follows</p>
+<pre class="highlight"><code class="language-c++">A(i,j,k) = B(i,j,k) * C(i,j,k) * D(i,j,k)</code></pre>
+<p>The syntax shown above corresponds to exactly what you would have to write in
+C++ with TACO to define tensor algebra computations. Note, however, that prior
+to defining a tensor algebra computation, all index variables have to be
+declared. This can be done as shown below:</p>
+<pre class="highlight"><code class="language-c++">IndexVar i, j, k;  // Declare index variables for previous example</code></pre>
+<h3 id="expressing-reductions">Expressing Reductions</h3>
+<p>In both of the previous examples, all of the index variables are used to index
+into both the output and the inputs. However, it is possible for an index
+variable to be used to index into the inputs only, in which case the index
+variable is reduced (summed) over. For instance, the following example </p>
+<pre class="highlight"><code class="language-c++">y(i) = A(i,j) * x(j)</code></pre>
+<p>can be rewritten with the summation more explicit as <script type="math/tex">y(i) = \sum_{j} A(i,j)
+\cdot x(j)</script> and demonstrates how matrix-vector multiplication can be expressed
+in index notation.</p>
+<p>Note that, in TACO, reductions are assumed to be over the smallest
+subexpression that captures all uses of the corresponding reduction variable.
+For instance, the following computation </p>
+<pre class="highlight"><code class="language-c++">y(i) = A(i,j) * x(j) + z(i)</code></pre>
+<p>can be rewritten with the summation more explicit as </p>
+<p>
+<script type="math/tex; mode=display">y(i) = \big(\sum_{j} A(i,j) \cdot x(j)\big) + z(i),</script>
+</p>
+<p>whereas the following computation </p>
+<pre class="highlight"><code class="language-c++">y(i) = A(i,j) * x(j) + z(j)</code></pre>
+<p>can be rewritten with the summation more explicit as </p>
+<p>
+<script type="math/tex; mode=display">y(i) = \sum_{j} \big(A(i,j) \cdot x(j) + z(i)\big).</script>
+</p>
+<h2 id="performing-the-computation">Performing the Computation</h2>
+<p>Once a tensor algebra computation has been defined (and all of the inputs have
+been <a href="tensors#initializing-tensors">initialized</a>), you can simply invoke the
+output tensor's <code>evaluate</code> method to perform the actual computation:</p>
+<pre class="highlight"><code class="language-c++">A.evaluate();  // Perform the computation defined previously for output tensor A</code></pre>
+<p>Under the hood, when you invoke the <code>evaluate</code> method, TACO first invokes the
+output tensor's <code>compile</code> method to generate kernels that assembles the output
+indices (if the tensor contains any sparse dimensions) and that performs the
+actual computation. TACO would then call the two generated kernels by invoking
+the output tensor's <code>assemble</code> and <code>compute</code> methods. You can manually invoke
+these methods instead of calling <code>evaluate</code> as demonstrated below:</p>
+<pre class="highlight"><code class="language-c++">A.compile();   // Generate output assembly and compute kernels 
+A.assemble();  // Invoke the output assembly kernel to assemble the output indices
+A.compute();   // Invoke the compute kernel to perform the actual computation</code></pre>
+<p>This can be useful if you want to perform the same computation multiple times,
+in which case it suffices to invoke <code>compile</code> once before the first time the
+computation is performed.</p>
+<h3 id="lazy-execution">Lazy Execution</h3>
+<p>It is also possible to compute on tensors without having to explicitly invoke
+<code>compile</code>, <code>assemble</code>, or <code>compute</code>. Once you attempt to modify or view the
+output of a computation, TACO would automatically invoke those methods if
+necessary in order to compute the values in the output tensor. If the input to 
+a computation is itself the output of another computation, then TACO would also 
+automatically ensure that the latter computation is fully executed first.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="tensors.html" class="btn btn-neutral float-left" title="Defining Tensors"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="scheduling.html" class="btn btn-neutral float-right" title="Providing a Schedule">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="tensors.html" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="scheduling.html" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '.';</script>
+    <script src="js/theme_extra.js" defer></script>
+    <script src="js/theme.js" defer></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS-MML_HTMLorMML" defer></script>
+      <script src="search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
